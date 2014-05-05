@@ -1,0 +1,39 @@
+<h1>Make a link!</h1>
+
+<form action="<%= links_url %>" method="post">
+  <input type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>"
+  >
+  <input type="hidden" name="link[poster_id]" value="<%= current_user.id %>">
+  <!-- <input type="hidden" name="link[poster_id]" value="<%#= current_user.id %>"> -->
+
+
+<label>
+  Title
+  <input type="text" name="link[title]" value="">
+</label>
+<hr>
+<label>
+  URL
+  <input type="text" name="link[url]" value="">
+</label>
+<hr>
+<label>
+  Description
+  <input type="textbody" name="link[text]" value="">
+</label>
+<hr>
+
+  Subreddits <br>
+  <% Sub.all.each do |sub| %>
+  <label>
+    <input type="checkbox" name="link[sub_ids][]" value="<%= sub.id %>">
+    <%= sub.title %>
+  </label><br>
+  <% end %>
+<hr>
+
+<input type="submit" value="Create Link!">
+
+</form>
